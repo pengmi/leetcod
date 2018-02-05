@@ -1,0 +1,57 @@
+class Solution {
+public:
+    vector<int> partitionLabels(string S) {
+        vector<int> v;
+        
+        set<char> sc;
+        map<int,int> hmap;
+        int length=S.length();
+        for(int i=0;i<length;i++)
+        {
+            if(sc.find(S[i])==sc.end())
+            {
+                sc.insert(S[i]);
+                hmap[i]=i;
+                for(int j=i;j<length;j++)
+                {
+                    if(S[i]==S[j])
+                    {
+                        hmap[i]=j;
+                    }
+                }   
+            }
+            else
+                continue;
+        }
+        
+        int low=0;
+        int high=0;
+        for(map<int,int>::iterator it=hmap.begin();it!=hmap.end();)
+        {
+            
+            pair<int,int> p=*it;
+
+            if(p.first>high)
+            {
+                v.push_back(p.first-low);
+                low=p.first;
+                high=p.second;
+            }
+            
+            if(p.second>high)
+            {
+                high=p.second;
+            }
+
+            ++it;
+            if(it==hmap.end())
+            {
+                v.push_back(high-low+1);
+                break;
+            }
+        }
+        
+        return v;
+    }
+
+};
