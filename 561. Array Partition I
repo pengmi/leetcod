@@ -1,0 +1,17 @@
+class Solution {
+public:
+    int arrayPairSum(vector<int>& nums) {
+        sort(nums.begin(),nums.end(),[](int a,int b){return a<b;});
+        int index=0;
+        int val=0;
+        for(vector<int>::iterator it=nums.begin();it!=nums.end();)
+        {
+            
+            val+=*it;
+            ++it;
+            if(it!=nums.end())
+                ++it;
+        }
+        return val;
+    }
+};
