@@ -1,0 +1,60 @@
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
+ * };
+ */
+class Solution {
+public:
+    TreeNode* constructMaximumBinaryTree(vector<int>& nums) {
+        
+        TreeNode* head=NULL;
+        
+        for(vector<int>::iterator it=nums.begin();it!=nums.end();)
+        {
+            if(!head)
+            {
+                head=new TreeNode(*it);
+                *it++;
+                continue;
+            }
+            TreeNode* value=new TreeNode(*it);
+            insertToTree(NULL,head,value);
+            ++it;
+        }
+        return head;
+    }
+    void insertToTree(TreeNode* front,TreeNode* &tree,TreeNode* value)
+    {
+        auto temp=tree;
+        if(value->val>=tree->val)
+            insertToFront(front,tree,value);
+        else if(value->val<temp->val&&temp->right==NULL)
+        {
+            temp->right=value;
+        }
+        else
+        {
+            //temp=temp->right;
+            insertToTree(temp,temp->right,value);
+        } 
+    }
+
+    void insertToFront(TreeNode*& front,TreeNode* &pos,TreeNode* value)
+    {
+        value->left=pos;
+        if(front)
+        {
+            front->right=value;
+        }
+        else
+        {
+            pos=value;
+        }
+        
+        
+    }
+};
