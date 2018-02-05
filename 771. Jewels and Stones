@@ -1,0 +1,20 @@
+class Solution {
+public:
+    int numJewelsInStones(string J, string S) {
+        if(J=="")
+            return 0;
+        int num=0;
+        int indexJ=0;
+        int indexS=0;
+        while(J[indexJ]!='\0')
+        {
+            while(S[indexS]!='\0')
+            {
+                if(J[indexJ]==S[indexS])
+                    num++;
+                indexS++;
+            }
+        }
+        return num;
+    }
+};
