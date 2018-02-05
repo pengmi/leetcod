@@ -1,0 +1,59 @@
+class Solution {
+public:
+    string complexNumberMultiply(string a, string b) {
+        int va[2]={0,0},vb[2]={0,0};
+        char af='+',bf='+';
+        //findNum(a,va);
+        //findNum(b,vb);
+        sscanf(a.c_str(),"%d+%di",&va[0],&va[1]);
+        sscanf(b.c_str(),"%d+%di",&vb[0],&vb[1]);
+        return caculate(va,vb);
+    }
+    
+    void findNum(string &str,int *v)
+    {
+        int length=str.length();
+        for(int i=0;i<length;i++)
+        {
+            if(str[i]=='+')
+            {
+                v[0]=atoi(str.substr(0,i).c_str());
+                auto temp=str.substr(i+1,length-i);
+                for(int j=0;j<temp.length();j++)
+                {
+                    if(temp[j]=='i')
+                    {
+
+                        v[1]=atoi(temp.substr(0,j).c_str());
+                        break;
+                    }
+                }
+                break;
+            }
+        }
+        
+    }
+    
+    string caculate(int* a,int* b)
+    {
+        
+        int first= a[0]*b[0];
+        
+        int second=a[1]*b[1];
+        int third=a[0]*b[1];
+        int fourth=a[1]*b[0];
+       
+        //string str;
+        //str.append(to_string(first-second));
+
+       // str+='+'; 
+        //str.append(to_string(third+fourth)+"i");
+        //return str;
+        
+        char str[50];
+        sprintf(str,"%d+%di",(first-second),(third+fourth));
+        return string(str);
+    }
+    
+    
+};
