@@ -1,0 +1,27 @@
+class Solution {
+public:
+    int hammingDistance(int x, int y) {
+        auto result=x^y; 
+        bitset<32> rb(result);
+        //int dis=0;
+       // vector<int> v;
+        //Int2Binary(v,result);
+        //for(vector<int>::iterator i=v.begin();i!=v.end();)
+       // {
+        //    if(*i==1)
+        //        dis++;
+       //     ++i;
+       // }
+        
+        
+        return rb.count();
+    }
+    void Int2Binary(vector<int> &v,int x)
+    {
+        while(x)
+        {
+            v.push_back(x%2);
+            x=x/2;
+        }
+    }
+};
