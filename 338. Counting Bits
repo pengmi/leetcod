@@ -1,0 +1,33 @@
+/*不提倡暴力解法，应该是找到相邻的数字的进位规律(如果有的话);
+如果没有规律的话就保存一个二进制然后对这个二进制不断的+1计算;
+*/
+class Solution {
+public:
+    vector<int> countBits(int num) {
+        int bina[100]={0};
+        int count=0;
+        vector<int> v;
+        v.push_back(0);
+        for(int i=0;i<num;++i)
+        {
+            caculateBinary(bina,count);
+            v.push_back(count);
+        }
+        return v;
+        
+    }
+    void caculateBinary(int * bina,int &count)
+    {
+        if(bina[0]==0)
+        {
+            bina[0]=1;
+            count++;
+        }   
+        else
+        {
+            bina[0]=0;
+            count--;
+            caculateBinary(bina+1,count);
+        }
+    }
+};
