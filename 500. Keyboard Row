@@ -1,0 +1,35 @@
+#https://leetcode.com/problems/keyboard-row/description/
+class Solution {
+public:
+    vector<string> findWords(vector<string>& words) {
+        set<char> hset[3]={{'q','w','e','r','t','y','u','i','o','p'},{'a','s','d','f','g','h','j','k','l'},{'z','x','c','v','b','n','m'}};
+        
+        vector<string> ret;
+        bool tag=false;
+        int temp=0;
+        for(int i=0;i<words.size();++i)
+        {
+            tag=true;
+            for(int t=0;t<3;t++)
+            {
+                if(hset[t].find(words[i][0])!=hset[t].end()||hset[t].find(words[i][0]+32)!=hset[t].end())
+                {
+                    temp=t;
+                    break;
+                }
+            }
+            
+            for(int j=1;j<words[i].length();++j)
+            {
+                if(hset[temp].find(words[i][j])==hset[temp].end()&&hset[temp].find(words[i][j]+32)==hset[temp].end())
+                {
+                    tag=false;
+                    break;
+                }
+            }
+            if(tag==true)
+                ret.push_back(words[i]);
+        }
+        return ret;
+    }
+};
