@@ -1,0 +1,23 @@
+class Solution {
+public:
+    bool isToeplitzMatrix(vector<vector<int>>& matrix) {
+        int maxY=matrix[0].size();
+        int maxX=matrix.size();
+        
+        if(maxY==maxX&&maxY==1)
+            return true;
+        
+        for(int i=0;i<maxX;i++)
+        {
+            for(int j=0;j<maxY;j++)
+            {
+                if(i!=(maxX-1)&&j!=(maxY-1))
+                {
+                    if(matrix[i][j]!=matrix[i+1][j+1])
+                        return false;
+                }                
+            }
+        }
+        return true;
+    }
+};
