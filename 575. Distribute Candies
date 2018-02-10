@@ -1,0 +1,24 @@
+class Solution {
+public:
+    int distributeCandies(vector<int>& candies) {
+        
+        if(!candies.size())
+            return 0;
+        
+        int candiesNum=candies.size()/2;
+        int ret=0;
+        map<int,bool> sister;
+        for(int i=0;i<candies.size();i++)
+        {
+            if(sister.find(candies[i])==sister.end())
+            {
+                sister.insert({candies[i],1});
+                ret++;
+                if(ret>=candiesNum)
+                    break;
+            }
+        }
+
+        return ret;
+    }
+};
