@@ -1,0 +1,37 @@
+ class Solution {
+public:
+    int calPoints(vector<string>& ops) {
+        int stack[1000]={0};
+        int top=0;
+        int temp=0;
+        int ret=0;
+        for(int i=0;i<ops.size();++i)
+        {
+            if(ops[i]=="C")
+            {
+                stack[--top]==0;
+            }
+            else if(ops[i]=="D")
+            {
+                temp=stack[top-1];
+                stack[top++]=2*temp;
+            }
+            else if(ops[i]=="+")
+            {
+                temp=(stack[top-2]+stack[top-1]);
+                stack[top++]=temp;
+            }
+            else
+            {
+                stack[top++]=atoi(ops[i].c_str());
+            }
+        }
+        
+        for(int i=0;i<top;i++)
+        {
+            ret+=stack[i];
+        }
+        
+        return ret;
+    }
+};
