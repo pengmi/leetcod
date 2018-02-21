@@ -1,0 +1,13 @@
+class Solution {
+public:
+    vector<pair<int, int>> reconstructQueue(vector<pair<int, int>>& people) {
+        vector<pair<int, int>> ret;
+        
+        sort(people.begin(),people.end(),[](pair<int,int> &a,pair<int,int> &b)
+             {if(a.first==b.first)return a.second<b.second;return a.first>b.first;});
+        for(auto i : people)
+            ret.insert( ret.begin() + i.second , i) ;
+        
+        return ret;
+    }
+};
