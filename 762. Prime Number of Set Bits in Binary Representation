@@ -1,0 +1,40 @@
+class Solution {
+public:
+    int countPrimeSetBits(int L, int R) {
+        int ret=0;
+        for(int i=L;i<=R;i++)
+        {
+            if(isPrime(getCount(i)))
+                ret++;
+        }
+        return ret;
+    }
+    
+    int getCount(unsigned int c)
+    {
+        int count=0;
+        while(c)
+        {
+            if(c%2)
+            {
+                count++;
+            }
+            c/=2;
+        }
+        return count;
+    }
+    
+    bool isPrime(int c)
+    {
+        if(c==1)
+            return false;
+        
+        for(int i=2;i<c;i++)
+        {
+            if(!(c%i))
+                return false;
+        }
+        cout<<c<<endl;
+        return true;
+    }
+};
