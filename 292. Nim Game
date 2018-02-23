@@ -1,0 +1,12 @@
+/*一道easy题，第一个不能胜利的数字为4，第二个为8，第三个为12，因为无论4n的数字，第一个数怎么取，第二个数取值都可以使剩下的数为4n，而取到最后为4的时候
+就只能输了。所以只要不是4n，就都可以赢*/
+class Solution {
+public:
+    bool canWinNim(int n) {
+        
+        if(n<4)
+            return true;
+        
+        return n%4==0?false:true;
+    }
+};
