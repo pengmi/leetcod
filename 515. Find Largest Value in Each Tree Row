@@ -1,0 +1,47 @@
+//简单的层次遍历
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
+ * };
+ */
+class Solution {
+public:
+    vector<int> largestValues(TreeNode* root) {
+        vector<int> ret;
+        if(!root)
+            return ret;
+        queue<TreeNode*> q;
+        q.push(root);
+        
+        TreeNode* tmpR=NULL;
+        int tmpI=0;
+        int maxSize=0;
+        while(!q.empty())
+        {
+            tmpI=q.front()->val;
+            maxSize=q.size();
+            for(int i=0;i<maxSize;i++)
+            {
+               
+                tmpR=q.front();
+                cout<<tmpR->val<<endl;
+                q.pop();
+                if(tmpI<tmpR->val)
+                {
+                    tmpI=tmpR->val;
+                }
+                if(tmpR->left)
+                    q.push(tmpR->left);
+                if(tmpR->right)
+                    q.push(tmpR->right);
+            }
+            ret.push_back(tmpI);
+        }
+        
+        return ret;
+    }
+};
