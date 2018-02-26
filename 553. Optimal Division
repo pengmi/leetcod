@@ -1,0 +1,30 @@
+class Solution {
+public:
+    string optimalDivision(vector<int>& nums) {
+        string ret(to_string(nums[0]));
+        
+        if(nums.size()==1)
+            return ret;
+        
+        if(nums.size()==2)
+        {
+            ret.append("/");
+            ret.append(to_string(nums[1]));
+            return ret;
+        }
+            
+        ret.append("/(");
+        
+        for(int i=1;i<nums.size();++i)
+        {
+            ret.append(to_string(nums[i]));
+            
+            if(i==nums.size()-1)
+                break;
+            
+            ret.append("/");
+        }
+        ret.append(")");
+        return ret;
+    }
+};
