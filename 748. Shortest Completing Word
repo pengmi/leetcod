@@ -1,0 +1,56 @@
+class Solution {
+public:
+    string shortestCompletingWord(string licensePlate, vector<string>& words) {
+        int min=0;
+        int ret=0;
+        for(int i=0;i<words.size();i++)
+        {
+            if(findInWord(licensePlate,words[i]))
+            {
+                if(min==0||min>words[i].length())
+                {
+                    min=words[i].length();
+                    ret=i;
+                    continue;
+                }
+            }
+        }
+        return string(words[ret]);
+    }
+    
+    bool findInWord(string licensePlate,string word)
+    {
+        map<char,int> temp;
+        for(auto i:word)
+        {
+            auto loc=temp.find(i);
+                
+            if(loc==temp.end())
+                temp.insert({i,1});
+            else
+            {
+                
+                loc->second++;
+            }
+        }
+        
+        for(auto i :licensePlate)
+        {
+            if(i>='A'&&i<='z')
+            {
+                if(i>='A'&&i<='Z')
+                    i+=32;
+                
+                auto loc=temp.find(i);
+                
+                if(loc==temp.end()||loc->second==0)
+                    return false;
+                else
+                {
+                    loc->second--;
+                }
+            }
+        }
+        return true;
+    }
+};
