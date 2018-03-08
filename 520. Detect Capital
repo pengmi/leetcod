@@ -1,0 +1,30 @@
+class Solution {
+public:
+    bool detectCapitalUse(string word) {
+        int flag=0;
+        bool isUpper=true;
+        for(auto i:word)
+        {
+            if(i>='A'&&i<='Z')
+            {
+                if(isUpper)
+                {
+                    flag++;
+                    continue;
+                }
+                else
+                    return false;
+            }
+            else if(i>='a'&&i<='z')
+            {
+               if(isUpper&&flag<2)
+                   isUpper=false;
+                else if(isUpper&&flag>=2)
+                    return false;
+            }
+            else
+                return false;
+        }
+        return true;
+    }
+};
