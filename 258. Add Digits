@@ -1,0 +1,18 @@
+class Solution {
+public:
+    int addDigits(int num) {
+    
+        if(num>=10)
+        {
+            int i=0;
+            while(num)
+            {
+                i+=num%10;
+                num/=10;
+            }
+            return addDigits(i);
+        }
+        else
+            return num;
+    }
+};
