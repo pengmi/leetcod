@@ -1,0 +1,57 @@
+class Solution {
+public:
+    vector<vector<string>> findDuplicate(vector<string>& paths) {
+        
+        map<string,vector<string>> resultMap;
+        
+        vector<vector<string>> ret;
+        
+        for(int i=0;i<paths.size();i++)
+        {
+            splitStr(paths[i],resultMap);
+        }
+        
+        for(auto i:resultMap)
+        {
+            if(i.second.size()<=1)
+            {
+                continue;
+            }
+            ret.push_back(i.second);
+        }
+        
+        return ret;
+    }
+    
+    void splitStr(string str,map<string,vector<string>> &resultMap)
+    {
+        vector<string> temp;
+        if(str!="")
+        {
+            temp=split(str,' ');
+        }
+        
+        for(int i=1;i<temp.size();i++)
+        {
+            int index=temp[i].find('(');
+            string fd=temp[i].substr(index+1,temp[i].find(')')-1);
+            
+            resultMap[fd].push_back(temp[0]+'/'+temp[i].substr(0,index));
+        }
+    }
+    
+    vector<string> split(const string& s,const char flag = ' ') 
+    {
+        vector<string> sv;
+        sv.clear();
+        istringstream iss(s);
+        string temp;
+
+        while (getline(iss, temp, flag)) 
+        {
+            sv.push_back(temp);
+        }
+        return sv;
+    }
+    
+};
