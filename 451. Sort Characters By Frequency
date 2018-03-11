@@ -1,0 +1,22 @@
+class Solution {
+public:
+    string frequencySort(string s) {
+        string ret="";
+        vector <int> m(256,0);
+        for(auto i:s)
+        {
+            m[i]++;
+        }
+        
+        sort(s.begin(),s.end(),[&m](char &a,char &b){
+            if(m[a]>m[b])
+                return true;
+            else if(m[a]==m[b])
+                return a>b?true:false;
+            else 
+                return false;
+        });
+        ret=s;
+        return ret;
+    }
+};
