@@ -1,0 +1,47 @@
+class Solution {
+public:
+    int maxAreaOfIsland(vector<vector<int>>& grid) {
+        int ret=0;
+        int tmp=0;
+        int xSize=grid.size();
+        int ySize=grid[0].size();
+        
+        for(int i=0;i<xSize;i++)
+        {
+            for(int j=0;j<ySize;j++)
+            {
+                if(grid[i][j]!=1)
+                    continue;
+                    
+                tmp=getMax(grid,i,j,xSize,ySize);
+                if(tmp>ret)
+                    ret=tmp;
+            }
+        }
+        
+        return ret;
+    }
+    int getMax(vector<vector<int>>& grid,int i,int j,const int &xSize,const int &ySize)
+    {        
+        if(!grid[i][j])
+            return 0;
+        int ret=0;
+        if(grid[i][j])
+            ret=1;
+        grid[i][j]=0;
+        
+        vector<int> index={-1,0,1,0,-1};
+        
+        for(int t=0;t<4;t++)
+        {
+            int row=index[t]+i;
+            int col=index[t+1]+j;
+            if(row>=0&&row<xSize&&col>=0&&col<=ySize&&(grid[row][col]==1))
+            {
+                ret+=getMax(grid,row,col,xSize,ySize);
+            }
+        }
+        
+        return ret;
+    }
+};
