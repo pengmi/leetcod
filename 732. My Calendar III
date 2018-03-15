@@ -1,0 +1,33 @@
+class MyCalendarThree {
+public:
+    MyCalendarThree() {
+        
+    }
+    
+    int book(int start, int end) {
+        int ret=0;
+        
+        _calendar[start]++;
+        _calendar[end]--;
+        
+        int temp=0;
+        for(auto& i:_calendar)
+        {
+            temp+=i.second;
+            
+            if(temp>ret)
+                ret=temp;
+        }
+        
+        return ret;
+        
+    }
+    
+    map<int,int> _calendar;
+};
+
+/**
+ * Your MyCalendarThree object will be instantiated and called as such:
+ * MyCalendarThree obj = new MyCalendarThree();
+ * int param_1 = obj.book(start,end);
+ */
