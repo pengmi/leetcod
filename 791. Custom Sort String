@@ -1,0 +1,19 @@
+class Solution {
+public:
+    string customSortString(string S, string T) {
+        
+        unordered_map<char,int> order;
+        
+        int index=0;
+        for(auto i:S)
+        {
+            if(!order[i])
+                order[i]=index;
+            index++;
+        }
+        
+        sort(T.begin(),T.end(),[&](char &a,char& b){return order[a]<order[b]?true:false;});
+        
+        return T;
+    }
+};
