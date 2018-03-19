@@ -1,0 +1,53 @@
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
+ * };
+ */
+class Solution {
+public:
+    bool findTarget(TreeNode* root, int k) {
+        bool ret=false;
+        find(root,root,k,ret);
+        return ret;
+    }
+    
+    void find(TreeNode* root,TreeNode* cur,int k,bool& ret)
+    {
+        if(!cur||ret)
+        {
+            return;
+        }
+        
+
+        findNum(root,cur,k-(cur->val),ret);
+            
+        find(root,cur->left,k,ret);
+        find(root,cur->right,k,ret);
+        
+        
+    }
+    
+    void findNum(TreeNode* root,TreeNode*cur, int num,bool& ret)
+    {
+        if(!root)
+        {
+            return;
+        }
+        
+        if(num==root->val&&cur!=root)
+        {
+            ret=true;
+            return;
+        }
+            
+        if(root->val>num)
+            findNum(root->left,cur,num,ret);
+        else
+            findNum(root->right,cur,num,ret);
+        
+    }
+};
