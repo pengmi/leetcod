@@ -1,0 +1,36 @@
+class Solution {
+public:
+    int arrayNesting(vector<int>& nums) {
+        int ret=0;
+        for(int i=0;i<nums.size();i++)
+        {
+            ret=max(ret,getContinue(nums,nums[i],i));
+        }
+        
+        return ret;
+    }
+    
+    int getContinue(vector<int>& nums,int index,const int num)
+    {
+        if(index>=nums.size()||nums[index]<0)
+        {
+            return 0;
+        }
+        
+        if(num==nums[index])
+        {
+            nums[index]=0-nums[index];
+            
+            if(index==num)
+            {
+                return 1;
+            }
+            
+            return 2;
+        }
+        
+        nums[index]=0-nums[index];
+        return getContinue(nums,abs(nums[index]),num)+1;
+        
+    }
+};
