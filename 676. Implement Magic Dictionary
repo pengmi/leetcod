@@ -1,0 +1,45 @@
+class MagicDictionary {
+public:
+    /** Initialize your data structure here. */
+    MagicDictionary() {
+        
+    }
+    
+    /** Build a dictionary through a list of words */
+    void buildDict(vector<string> dict) {
+        _dict=new vector<string>(dict);
+    }
+    
+    /** Returns if there is any word in the trie that equals to the given word after modifying exactly one character */
+    bool search(string word) {
+        bool ret=false;
+        for(auto i:(*_dict))
+        {
+            if(i.length()!=word.length())
+                continue;
+            
+            int diff=0;
+            
+            for(int t=0;t<i.length();++t)
+            {
+                if(i[t]!=word[t])
+                    diff++;
+                if(diff>1)
+                    break;
+            }
+            
+            if(diff==1)
+                ret=true;
+        }
+        return ret;
+    }
+    
+    vector<string> *_dict;
+};
+
+/**
+ * Your MagicDictionary object will be instantiated and called as such:
+ * MagicDictionary obj = new MagicDictionary();
+ * obj.buildDict(dict);
+ * bool param_2 = obj.search(word);
+ */
