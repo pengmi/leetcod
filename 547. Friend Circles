@@ -21,8 +21,8 @@ public:
                     nowVisit.pop();
                     for(int j=0;j<colMax;++j)
                     {
-                        if (tempi == i&&j == i)
-							continue;
+                        if (tempi == j)
+				continue;
                         if(M[tempi][j]||M[j][tempi])
                         {
                             if(isVisit[j])
