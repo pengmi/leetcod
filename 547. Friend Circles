@@ -1,0 +1,41 @@
+class Solution {
+public:
+    int findCircleNum(vector<vector<int>>& M) {
+        if(M.size()==0)
+            return 0;
+        
+        int ret=0;
+        int rowMax=M.size();
+        int colMax=M[0].size();//row==col
+        vector<int> isVisit(rowMax,true);
+        stack<int> nowVisit;
+        for(int i=0;i<rowMax;i++)
+        {
+            if(M[i][i]==1&&isVisit[i])
+            {
+                ret++;
+                nowVisit.push(i);
+                while(!nowVisit.empty())
+                {
+                    int tempi=nowVisit.top();
+                    nowVisit.pop();
+                    for(int j=0;j<colMax;++j)
+                    {
+                        if (tempi == i&&j == i)
+							continue;
+                        if(M[tempi][j]||M[j][tempi])
+                        {
+                            if(isVisit[j])
+                            {
+                                nowVisit.push(j);
+                            }
+                        
+                        }
+                    }
+                    isVisit[tempi]=false;
+                }
+            }
+        }
+        return ret;
+    }
+};
