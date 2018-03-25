@@ -1,0 +1,20 @@
+class Solution {
+public:
+    vector<int> intersection(vector<int>& nums1, vector<int>& nums2) {
+        vector<int> ret;
+        unordered_map<int,int> numMap;
+        for(auto i:nums1)
+        {
+            numMap[i]=1;
+        }
+        for(auto i:nums2)
+        {
+            if(numMap.find(i)!=numMap.end()&&numMap[i]==1)
+            {
+                numMap[i]=0;
+                ret.push_back(i);
+            }
+        }
+        return ret;
+    }
+};
