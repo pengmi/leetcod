@@ -1,0 +1,17 @@
+class Solution {
+public:
+    int titleToNumber(string s) {
+        int ret=0;
+        int size=s.size();
+        for(int i=size-1,t=0;i>=0;i--,t++)
+        {
+            if(t==0)
+                ret+=(s[i]-'A'+1);
+            else
+            {
+                ret+=pow(26,t)*(s[i]-'A'+1);
+            }
+        }
+        return ret;
+    }
+};
