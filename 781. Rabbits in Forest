@@ -1,0 +1,35 @@
+class Solution {
+public:
+    int numRabbits(vector<int>& answers) {
+        int answersSize=answers.size();
+        if(answersSize==0)
+        return 0;
+        int ret=0;
+        map<int,int> answerMap;
+        for(int i=0;i<answersSize;++i)
+        {
+            if(answers[i])
+                answerMap[answers[i]]++;
+            else
+                ret++;
+        }
+        for(auto i:answerMap)
+        {
+            int num=i.first+1;
+            if(i.second<=i.first+1)
+                ret+=num;
+            else
+            {
+                int t=i.second;
+                while(t-num>0)
+                {
+                    t-=num;
+                    ret+=num;
+                }
+                ret+=num;
+            }
+        }
+        return ret;
+        
+    }
+};
