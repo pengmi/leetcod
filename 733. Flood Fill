@@ -1,0 +1,26 @@
+class Solution {
+public:
+	vector<vector<int>> floodFill(vector<vector<int>>& image, int sr, int sc, int newColor) {
+		if (!image.size())
+			return image;
+		vector<vector<int>> isVisit(image.size(), vector<int>(image[0].size(),0));
+		fill(isVisit, image, sr, sc, image[sr][sc], newColor);
+		return image;
+	}
+	void fill(vector<vector<int>>& isVisit, vector<vector<int>>& image, int row, int col, const int oldColor, const int newColor)
+	{
+		if (row<0 || row >= image.size() || col<0 || col >= image[0].size())
+			return;
+		if (image[row][col] == oldColor && !isVisit[row][col])
+		{
+			image[row][col] = newColor;
+			isVisit[row][col] = 1;
+		}
+		else
+			return;
+		fill(isVisit, image, row + 1, col, oldColor, newColor);
+		fill(isVisit, image, row, col + 1, oldColor, newColor);
+		fill(isVisit, image, row - 1, col, oldColor, newColor);
+		fill(isVisit, image, row, col - 1, oldColor, newColor);
+	}
+};
