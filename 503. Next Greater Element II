@@ -1,0 +1,21 @@
+class Solution {
+public:
+    vector<int> nextGreaterElements(vector<int>& nums) {
+        int size=nums.size();
+        vector<int> ret(size,-1);
+        stack<int> index;
+        for(int i=0;i<2*size-1;++i)
+        {
+            while(!index.empty()&&nums[index.top()]<nums[i%size])
+            {
+                ret[index.top()]=nums[i%size];
+                index.pop();
+            }
+            if(i<size)
+            {
+                index.push(i);
+            }
+        }
+        return ret;
+    }
+};
