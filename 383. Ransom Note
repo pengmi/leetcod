@@ -1,0 +1,24 @@
+class Solution {
+public:
+    bool canConstruct(string ransomNote, string magazine) {
+        map<char,int> mag;
+        
+        for(auto i:magazine)
+        {
+            mag[i]++;
+        }
+        
+        for(auto i:ransomNote)
+        {
+            if(mag.find(i)==mag.end())
+                return false;
+            mag[i]--;
+        }
+        for(auto i:mag)
+        {
+            if(i.second<0)
+                return false;
+        }
+        return true;
+    }
+};
