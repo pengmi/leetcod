@@ -1,0 +1,20 @@
+class Solution {
+public:
+	vector<vector<int>> allPathsSourceTarget(vector<vector<int>>& graph) {
+		vector<vector<int>> ret;
+        vector<int> temp={0};
+		getPaths(graph, ret,temp, 0);
+		return ret;
+	}
+    void getPaths(const vector<vector<int>>& graph,vector<vector<int>> &ret,vector<int> &temp,int index)
+    {
+        if(!graph[index].size())
+            ret.push_back(temp);
+        for(int i=0;i<graph[index].size();++i)
+        {
+            vector<int> tp(temp);
+            tp.push_back(graph[index][i]);
+            getPaths(graph,ret,tp,graph[index][i]);
+        }
+    }
+};
