@@ -1,0 +1,39 @@
+class Solution {
+public:
+    vector<string> generateParenthesis(int n) {
+        vector<string> ret;
+        string parentheses;
+        parentheses.push_back('(');
+        int left=n-1;
+        int right=n-1;
+        setPos(ret,parentheses,left,right);
+        return ret;
+    }
+    
+    void setPos(vector<string>& ret,string &parentheses,int left,int right)
+    {
+        if(left==0&&right==0)
+        {
+            parentheses.push_back(')');
+            ret.push_back(parentheses);
+            return;
+        }
+        
+        if(left)
+        {
+            string temp(parentheses);
+            temp.push_back('(');
+            setPos(ret,temp,left-1,right);
+        }
+        
+        if(right)
+        {
+            if(right<left)
+                return;
+            string temp(parentheses);
+            temp.push_back(')');
+            setPos(ret,temp,left,right-1);
+        }
+    }
+    
+};
