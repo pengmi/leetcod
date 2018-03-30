@@ -4,9 +4,7 @@ public:
         int ret=0;
         
         vector<int> colMax(grid[0].size(),0);
-        vector<int> rowMax(grid.size(),0);
-        vector<vector<int>> maxNum(grid.size(),vector<int>(grid[0].size(),0));
-        
+        vector<int> rowMax(grid.size(),0);      
         int row=grid.size();
         int col=grid[0].size();
         
