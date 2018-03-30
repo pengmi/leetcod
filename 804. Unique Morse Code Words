@@ -1,0 +1,22 @@
+class Solution {
+public:
+    int uniqueMorseRepresentations(vector<string>& words) {
+        int ret=0;
+        unordered_map<char,string> dict={{'a',".-"},{'b',"-..."},{'c',"-.-."},{'d',"-.."},{'e',"."},{'f',"..-."},{'g',"--."},{'h',"...."},{'i',".."},{'j',".---"},{'k',"-.-"},{'l',".-.."},{'m',"--"},{'n',"-."},{'o',"---"},{'p',".--."},{'q',"--.-"},{'r',".-."},{'s',"..."},{'t',"-"},{'u',"..-"},{'v',"...-"},{'w',".--"},{'x',"-..-"},{'y',"-.--"},{'z',"--.."}};
+        
+        unordered_set<string> strSet;
+        
+        for(auto i:words)
+        {
+            string str="";
+            for(auto j:i)
+            {
+                str+=dict[j];
+            }
+            strSet.insert(str);
+        }
+        
+        ret=strSet.size();
+        return ret;
+    }
+};
