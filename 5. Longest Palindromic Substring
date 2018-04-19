@@ -1,0 +1,41 @@
+class Solution {
+public:
+    string longestPalindrome(string s) {
+        if(s.length()<2)
+            return s;
+        string ret="";
+        ret+=s[0];
+        int ret_max=1;
+        int left=0;
+        int right=0;
+        for(int i=0;i<s.length();++i)
+        {
+            for(int j=s.length()-1;j>i;--j)
+            {
+                if(s[i]==s[j])
+                {
+                    if(isPal(s,i,j))
+                    {
+                        if(j-i+1>ret_max)
+                        {
+                            ret=s.substr(i,j-i+1);
+                            ret_max=j-i+1;
+                            if(j==s.length()-1)
+                                return ret;
+                        }
+                    }
+                }
+            }
+        }
+        return ret;
+    }
+    bool isPal(string s,int left,int right)
+    {
+        for(int i=left,j=right;i<j;i++,j--)
+        {
+            if(s[i]!=s[j])
+                return false;
+        }
+        return true;
+    }
+};
