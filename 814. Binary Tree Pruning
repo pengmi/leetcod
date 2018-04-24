@@ -1,0 +1,40 @@
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
+ * };
+ */
+class Solution {
+public:
+    TreeNode* pruneTree(TreeNode* root) {
+        if(!root)
+            return NULL;
+        auto ret=root;
+        bool true1=deleteZero(root->left,root,1);
+        bool true2=deleteZero(root->right,root,2);
+        if(root->val==0&&(!true1)&&(!true2))
+            root=NULL;
+        
+        return root;
+    }
+    bool deleteZero(TreeNode* root,TreeNode* father,int pos)
+    {
+        if(!root)
+            return false;
+        //cout<<root->val<<endl;
+        bool true1=deleteZero(root->left,root,1);
+        bool true2=deleteZero(root->right,root,2);
+        if(root->val==0&&(!true1)&&(!true2))
+        {
+            if(pos==1)
+                father->left=NULL;
+            else 
+                father->right=NULL;
+            return false;
+        }
+        else return true;
+    }
+};
