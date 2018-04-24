@@ -1,0 +1,35 @@
+class Solution {
+public:
+    vector<int> shortestToChar(string S, char C) {
+        vector<int> ret(S.length(),0);
+        vector<int> index;
+        for(int i=0;i<S.length();++i)
+        {
+            if(S[i]==C)
+                index.push_back(i);
+        }
+        
+        auto itr=index.begin();
+        
+        for(int i=0;i<S.length();++i)
+        {
+            if(i!=*itr)
+            {
+                if(itr==index.begin())
+                    ret[i]=abs(*itr-i);
+                else
+                {
+                    ret[i]=abs(min((*itr-i),i-*(itr-1)));
+                }
+            }
+            else if(i==*itr)
+            {
+                ret[i]=0;
+                if((itr+1)!=index.end())
+                    ++itr;
+            }
+
+        }
+        return ret;
+    }
+};
