@@ -1,0 +1,36 @@
+
+class Solution {
+public:
+    vector<vector<int>> combinationSum(vector<int>& candidates, int target) {
+        vector<vector<int>> ret;
+        vector<int> temp;
+        getComb(candidates,target,0,0,ret,temp);
+        return ret;
+    }
+    void getComb(std::vector<int>& candidates,int target,int index,int sum,std::vector<std::vector<int>> &ret,std::vector<int>& temp)
+    {
+        if(sum==target)
+        {
+            ret.push_back(temp);
+            return;
+        }
+        else if(sum>target)
+        {
+            return;   
+        }
+        
+        if(index==candidates.size())
+        {
+            return;
+        }
+        
+        for(int i=index;i!=candidates.size();++i)
+        {
+            temp.push_back(candidates[i]);
+            getComb(candidates,target,i,sum+candidates[i],ret,temp);
+            temp.pop_back();
+        }
+        
+    }
+
+};
