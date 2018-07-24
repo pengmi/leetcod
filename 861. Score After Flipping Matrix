@@ -1,0 +1,81 @@
+class Solution {
+public:
+    int matrixScore(vector<vector<int>>& A) {
+        int rowSize=A.size();
+        if(rowSize<=0)
+            return 0;
+        int colSize=A[0].size();
+        
+        int ret=0;
+        
+        for(int r=0;r<rowSize;++r)
+        {
+            if(isReverseRow(r,A))
+            {
+                for(int col=0;col<colSize;++col)
+                {
+                    A[r][col]=1-A[r][col];
+                }
+            }
+        }
+        
+        for(int c=0;c<colSize;++c)
+        {
+            if(isReverseCol(c,A,rowSize))
+            {
+                for(int row=0;row<rowSize;++row)
+                {
+                    A[row][c]=1-A[row][c];
+                    
+                    if(A[row][c])
+                        ret+=pow(2,colSize-c-1);
+                }
+            }
+            else
+            {
+                for(int row=0;row<rowSize;++row)
+                {
+                    if(A[row][c])
+                    ret+=pow(2,colSize-c-1);
+                }
+            }
+        }
+        
+        //for(int i=0;i<rowSize;++i)
+        //{
+        //    for(int j=0;j<colSize;++j)
+        //    {
+        //        cout<<A[i][j];
+        //    }
+        //    cout<<endl;
+        //}
+        
+        return ret;
+    }
+    bool isReverseCol(int colNum,vector<vector<int>>& A,int rowSize)
+    {
+        int oneCount=0;
+        for(int i=0;i<rowSize;++i)
+        {
+            if(A[i][colNum]==1)
+                oneCount++;
+            else
+                oneCount--;
+        }
+        if(oneCount<0)
+        {
+            return true;
+        }
+        else
+            return false;
+    }
+    bool isReverseRow(int rowNum,vector<vector<int>>& A)
+    {
+        if(A[rowNum][0]==1)
+        {
+            return false;
+        }
+        else
+            return true;
+    }
+};
