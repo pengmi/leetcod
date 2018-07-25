@@ -1,0 +1,27 @@
+class Solution {
+public:
+    int peakIndexInMountainArray(vector<int>& A) {
+        int ret=0;
+        int size=A.size();
+        if (size<3)
+        {
+            return 0;
+        }
+        for(int i=1,j=size-2;;++i,--j)
+        {
+            if(A[i]<A[i-1])
+            {
+                ret=i-1;
+                break;
+            }
+            
+            if(A[j]<A[j+1])
+            {
+                ret=j+1;
+                break;
+            }
+            
+        }
+        return ret;
+    }
+};
