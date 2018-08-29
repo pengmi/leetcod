@@ -1,0 +1,26 @@
+class NumArray {
+public:
+    NumArray(vector<int> nums) {
+        _nums=std::move(nums);
+        
+        for(int i=1;i<_nums.size();++i)
+        {
+            _nums[i]=_nums[i]+_nums[i-1];
+        }
+    }
+    
+    int sumRange(int i, int j) {
+        if (i==0)
+            return _nums[j];
+        return _nums[j]-_nums[i-1];
+    }
+    
+    vector<int> _nums;
+    
+};
+
+/**
+ * Your NumArray object will be instantiated and called as such:
+ * NumArray obj = new NumArray(nums);
+ * int param_1 = obj.sumRange(i,j);
+ */
