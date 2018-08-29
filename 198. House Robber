@@ -1,0 +1,28 @@
+class Solution {
+public:
+    int rob(vector<int>& nums) {
+        int ret=0;
+        int size=nums.size();
+        vector<int> dp(size,0);
+        
+            
+        for(int j=0;j<size;++j)
+        {
+            if(j<2)
+            {
+                dp[j]=nums[j];
+            }
+            else if(j==2)
+            {
+                dp[2]=nums[2]+nums[0];
+            }
+            else
+            {
+                dp[j]=max(nums[j]+dp[j-2],nums[j]+dp[j-3]);
+            }
+                
+            ret=max(ret,dp[j]);
+        }
+        return ret;
+    }
+};
