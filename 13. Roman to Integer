@@ -1,0 +1,35 @@
+class Solution {
+public:
+    int romanToInt(string s) {
+        int size=s.length();
+        
+        unordered_map<char,int> cMap;
+        cMap.insert(pair<char,int>('I',1));
+        cMap.insert(pair<char,int>('V',5));
+        cMap.insert(pair<char,int>('X',10));
+        cMap.insert(pair<char,int>('L',50));
+        cMap.insert(pair<char,int>('C',100));
+        cMap.insert(pair<char,int>('D',500));
+        cMap.insert(pair<char,int>('M',1000));
+        
+        int total=0;
+        for(int index=0;index<size;++index)
+        {
+            if(index==(size-1))
+            {
+                total+=cMap[s[index]];
+                break;
+            }
+            if(cMap[s[index]]<cMap[s[index+1]])
+            {
+                total-=cMap[s[index]];
+            }
+            else
+            {
+                total+=cMap[s[index]];
+            }
+        }
+        
+        return total;
+    }
+};
