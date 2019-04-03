@@ -1,0 +1,50 @@
+class Solution {
+public:
+    bool isValid(string s) {
+        stack<char> cstack;
+        bool tag=true;
+        for(auto i:s)
+        {
+            if(cstack.empty())
+            {
+                cstack.push(i);
+            }
+            else
+            {
+                if(i==')')
+                {
+                    if(cstack.top()!='(')
+                    {
+                        tag=false;
+                        break;
+                    }
+                    cstack.pop();
+                }
+                else if(i==']')
+                {
+                    if(cstack.top()!='[')
+                    {
+                        tag=false;
+                        break;
+                    }
+                    cstack.pop();
+                }
+                else if(i=='}')
+                {
+                    if(cstack.top()!='{')
+                    {
+                        tag=false;
+                        break;
+                    }
+                    cstack.pop();
+                }
+                else
+                {
+                    cstack.push(i);
+                }
+            }
+        }
+        
+        return tag&&(cstack.empty());
+    }
+};
