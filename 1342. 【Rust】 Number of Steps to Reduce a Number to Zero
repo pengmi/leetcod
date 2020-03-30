@@ -1,0 +1,19 @@
+impl Solution {
+    pub fn number_of_steps (num: i32) -> i32 {
+        calc_depth(num, 0)
+    }
+}
+fn calc_depth(mut num: i32, mut depth: i32) -> i32{
+    if num <= 0 {
+        return depth;
+    }
+
+    if num % 2 == 0{
+        num = num/2;
+    }
+    else{
+        num = num - 1;  
+    }
+    depth = depth +1;
+    calc_depth(num, depth)
+}
