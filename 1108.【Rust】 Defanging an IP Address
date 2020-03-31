@@ -1,0 +1,16 @@
+impl Solution {
+    pub fn defang_i_paddr(address: String) -> String {
+        let array: Vec<&str> = address.split('.').collect();
+        let mut ret_string = "".to_string();
+        for i in 0..array.len() {
+            if i != 0 {
+                ret_string.push_str("[.]");
+                ret_string.push_str(array[i]);
+            }
+            else{
+                ret_string.push_str(array[i]);
+            }
+        }
+        ret_string
+    }
+}
