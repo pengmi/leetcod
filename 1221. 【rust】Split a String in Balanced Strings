@@ -1,0 +1,21 @@
+impl Solution {
+    pub fn balanced_string_split(s: String) -> i32 {
+        let mut left = 0;
+        let mut right = 0;
+        let mut ret = 0;
+        for i in s.chars() {
+            if i == 'L' {
+                left = left +1;
+            }else
+            {
+                right = right + 1;
+            }
+            if left == right {
+                ret = ret +1;
+                left = 0;
+                right = 0;
+            }
+        }
+        return ret
+    }
+}
